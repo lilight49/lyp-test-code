@@ -1,0 +1,10 @@
+/*.rar
+target/
+.classpath
+.project
+.settings/
+/bin/
+.idea/
+*.iml
+*.log
+logs/
