@@ -31,10 +31,10 @@ public class FileChannelTest {
         FileOutputStream fileOutputStream = new FileOutputStream("D:\\java_test_copy.txt");
         FileChannel outputStreamChannel = fileOutputStream.getChannel();
 
-        //将inputStreamChannel指定通道的数据复制到outputStreamChannel目标通道
+        //将inputStreamChannel目标通道的数据复制到outputStreamChannel当前通道
 //        outputStreamChannel.transferFrom(inputStreamChannel, 0, inputStreamChannel.size());
 
-        //将inputStreamChannel目标通道的数据复制到outputStreamChannel指定通道
+        //将inputStreamChannel当前通道的数据复制到outputStreamChannel目标通道
         inputStreamChannel.transferTo(0, inputStreamChannel.size(), outputStreamChannel);
 
         fileInputStream.close();
