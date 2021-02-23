@@ -7,7 +7,7 @@
 
 ## NIO-three cores 三大核心
 ```text
-1: channel 通道(channel是双向的)
+1: channel 通道(channel是双向的),目标通道和当前通道的区分
 2: buffer 缓冲区(在非阻塞方面有关键的作用;buffer是一个内存块,底层有一个数组;数据的读取和写入通过buffer,通过flip进行切换)
 3: selector 选择器(选择通道由event事件决定)
 
