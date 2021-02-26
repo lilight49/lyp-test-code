@@ -2,18 +2,39 @@ package nio;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class FileChannelTest {
     public static void main(String[] args) throws IOException {
 
-        FileOut();//文件输出
-
+//        FileOut();//文件输出
+//
 //        FileIn();//文件读取
 //
 //        FileCopy();//文件从读取到写入
 //
 //        FileCopy2();//复制目标通道的数据到指定通道
+
+        mappedByteBufferTest();//mappedByteBuffer可以让文件直接在内存中进行修改,不在需要拷贝
+    }
+
+    /**
+     * @methodName mappedByteBufferTest
+     * @description mappedByteBuffer可以让文件直接在内存中进行修改,不在需要拷贝
+     * @author liyunpeng
+     * @date 2021/2/26 15:02
+     * @return: void
+    **/
+    private static void mappedByteBufferTest() throws IOException {
+        RandomAccessFile randomAccessFile = new RandomAccessFile("D:\\java_test.txt", "rw");
+        FileChannel fileChannel = randomAccessFile.getChannel();
+        MappedByteBuffer mappedByteBuffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, 0, 5);
+
+        mappedByteBuffer.put(0, (byte) 'H');
+        mappedByteBuffer.put(3, (byte) '9');
+
+        randomAccessFile.close();
     }
 
     /**
