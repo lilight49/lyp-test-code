@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class ScatterGatherTest {
     public static void main(String[] args) throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        InetSocketAddress inetSocketAddress = new InetSocketAddress(7000);
+        InetSocketAddress inetSocketAddress = new InetSocketAddress(9000);
         serverSocketChannel.socket().bind(inetSocketAddress);
 
         ByteBuffer[] byteBuffers = new ByteBuffer[2];
@@ -34,8 +34,22 @@ public class ScatterGatherTest {
                 long read = socketChannel.read(byteBuffers);
                 byteRead += read;
 
-                Arrays.asList(byteBuffers).stream().map(byteBuffer-> "position"+ byteBuffer.position());
+                Arrays.asList(byteBuffers).stream().map(byteBuffer-> "position===="+ byteBuffer.position()+"=============limit========"+byteBuffer.limit()).forEach(System.out::println);
             }
+
+            //将所有的buffer翻转
+            Arrays.asList(byteBuffers).forEach(byteBuffer -> byteBuffer.flip());
+
+            int byteWrite = 0;
+            while (byteWrite < msgSize){
+                long write = socketChannel.write(byteBuffers);//回显到客户端
+                byteWrite += write;
+
+            }
+
+            Arrays.asList(byteBuffers).forEach(byteBuffer -> byteBuffer.clear());//复位
+
+            System.out.println("byteRead=========="+byteRead+"=============byteWrite=============="+byteWrite);
         }
     }
 }
