@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Spliterator;
 import java.util.stream.Collectors;
 
 /**
@@ -14,10 +15,27 @@ import java.util.stream.Collectors;
 public class StreamTest {
     public static void main(String[] args) {
         //字符串拼接
-        appendString();
+//        appendString();
 
+        //list 拆分
+        listSplit();
 
+    }
 
+    private static void listSplit() {
+        List<Integer> boList = new ArrayList<Integer>();
+        for (int i = 0; i < 2000; i++) {
+            boList.add(i);
+        }
+
+        Spliterator<Integer> boSpliterator = boList.spliterator();
+
+        Spliterator<Integer> one = boSpliterator.trySplit();
+
+        Spliterator<Integer> two = boSpliterator.trySplit();
+
+        System.out.println("");
+        two.forEachRemaining(e-> System.out.println(e));
     }
 
     /**
