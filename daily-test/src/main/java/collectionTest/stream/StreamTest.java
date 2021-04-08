@@ -1,13 +1,10 @@
-package collectionTest;
+package collectionTest.stream;
 
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Spliterator;
-import java.util.stream.Collectors;
 
 /**
  * @description
