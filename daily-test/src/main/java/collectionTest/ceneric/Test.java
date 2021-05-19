@@ -4,6 +4,7 @@ package collectionTest.ceneric;
 import lombok.Data;
 
 import javax.sound.midi.Soundbank;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,12 @@ public class Test {
 
     public static void main(String[] args) {
         ((List) getTest(new TestClass())).forEach(test->{
-//            Object test1 = test;
+            Object test1 = test;
 
             if (test instanceof User) {
                 User user = (User) test;
                 System.out.println(user.toString());
             }
-
-            System.out.println(test.getClass().getName());
         });
     }
 
