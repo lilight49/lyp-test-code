@@ -26,9 +26,10 @@ public class Test {
         ((List) getTest(new TestClass())).forEach(test->{
             Object test1 = test;
 
-            if (test instanceof User) {
-                User user = (User) test;
-                System.out.println(user.toString());
+            if (test instanceof Super) {
+                Super user = (Super) test;
+
+                System.out.println(user.getPrice() * 10);
             }
         });
     }
@@ -36,15 +37,21 @@ public class Test {
 }
 
 @Data
-class User{
+class User extends Super{
     private String id;
     private String name;
 
     public User createUser(String id, String name) {
         this.id = id;
         this.name = name;
+        this.setPrice(15);
 
         return this;
     }
+}
+
+@Data
+class Super{
+    private int price;
 }
 
