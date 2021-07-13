@@ -2,9 +2,11 @@ package collectionTest.stream;
 
 import lombok.Data;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Spliterator;
+import java.util.stream.Collectors;
 
 /**
  * @description
@@ -20,7 +22,40 @@ public class StreamTest {
 //        listSplit();
 
         //reduce
-        reduce();
+//        reduce();
+
+        //limit
+        limitTest();
+    }
+
+    private static void limitTest() {
+        List<Integer> boList = new ArrayList<Integer>();
+        for (int i = 0; i < 20; i++) {
+            boList.add(i);
+        }
+
+        int  index = 0;
+        int end = 11;
+
+//        boList.stream().skip(index).limit(end).forEach(System.out::println);
+//        List<Integer> onelist = boList.stream().skip(1998).limit(end).collect(Collectors.toList());
+//
+//        System.out.println("=============");
+
+        while (true){
+            boList.stream().skip(index).limit(end).forEach(System.out::println);
+
+            if (boList.size() > index + end) {
+                index+=end;
+            }else{
+                index = boList.size();
+            }
+
+            if (index == boList.size()) {
+                break;
+            }
+        }
+
     }
 
     /**
